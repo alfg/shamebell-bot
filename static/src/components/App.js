@@ -2,23 +2,13 @@ import React, { Component } from 'react';
 import profile from '../img/profile.png';
 import './App.css';
 import Constants from '../Constants';
-import Stats from '../Stats';
+import Stats from './Stats';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.stats = new Stats();
-    this.stats.on('update', this.onMessage.bind(this));
-
-  }
 
   addToDiscordHandler(e) {
     // window.open('/login', '', 'height=800, width=500');
     window.open(Constants.AUTH_URL, '', 'height=800, width=500');
-  }
-
-  onMessage(e) {
-    console.log(e);
   }
 
   render() {
@@ -37,6 +27,8 @@ class App extends Component {
             Add to Discord
           </a>
         </div>
+
+        <Stats />
       </div>
     );
   }

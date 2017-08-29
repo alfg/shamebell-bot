@@ -11,14 +11,18 @@ import (
 	"syscall"
 	"time"
 
+	redis "gopkg.in/redis.v3"
+
 	"github.com/bwmarrin/discordgo"
 )
 
 var buffer = make([][]byte, 0)
+var r *redis.Client
 
 func main() {
 	var (
 		Token = flag.String("t", "", "Discord Authentication Token")
+		Redis = flag.String("r", "", "Redis connection string")
 	)
 	flag.Parse()
 
@@ -26,6 +30,16 @@ func main() {
 	if err != nil {
 		fmt.Println("error loading sound: ", err)
 		return
+	}
+
+	if *Redis != "" {
+		r = redis.NewClient(&redis.Options{Addr: *Redis, DB: 0})
+
+		_, err := r.Ping().Result()
+		if err != nil {
+			fmt.Println("failed to connect to redis", err)
+			return
+		}
 	}
 
 	discord, err := discordgo.New("Bot " + *Token)
@@ -141,6 +155,9 @@ func playSound(s *discordgo.Session, guildID, channelID string) error {
 		return err
 	}
 
+	// Track stats in redis.
+	go trackStats()
+
 	// Sleep for specified amount of time before playing sound.
 	time.Sleep(250 * time.Millisecond)
 
@@ -162,4 +179,19 @@ func playSound(s *discordgo.Session, guildID, channelID string) error {
 	vc.Disconnect()
 
 	return nil
+}
+
+func trackStats() {
+	if r == nil {
+		return
+	}
+
+	_, err := r.Pipelined(func(pipe *redis.Pipeline) error {
+		pipe.Incr("shamebell:total")
+		return nil
+	})
+
+	if err != nil {
+		fmt.Println("Failed to track stats in redis")
+	}
 }

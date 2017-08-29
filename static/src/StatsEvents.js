@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 
-class Stats extends EventEmitter {
+class StatsEvents extends EventEmitter {
     constructor() {
         super();
 
@@ -12,11 +12,10 @@ class Stats extends EventEmitter {
     }
 
     receivedMessage(event) {
-        console.log(event);
-        this.emit('update');
+      this.emit('update', event);
     }
 
 }
 
-export default Stats;
+export default StatsEvents;
 
