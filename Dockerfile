@@ -1,5 +1,7 @@
 FROM golang:alpine
 
+RUN apk update && apk add git
+
 ADD . /go/src/github.com/alfg/shamebell-bot
 
 RUN go get -u github.com/golang/dep/cmd/dep
