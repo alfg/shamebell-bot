@@ -105,7 +105,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 func loadSound() error {
 
-	file, err := os.Open("../../assets/shamebell.dca")
+	file, err := os.Open("./assets/shamebell.dca")
 	if err != nil {
 		fmt.Println("Error opening dca file :", err)
 		return err
