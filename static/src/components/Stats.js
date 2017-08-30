@@ -18,8 +18,7 @@ class Stats extends Component {
   onMessage(event) {
     const data = JSON.parse(event.data);
     console.log(data);
-    // count = data.total || 0;
-    this.setState({ total: data.total });
+    this.setState({ total: data.total || 0 });
   }
 
 
