@@ -2,3 +2,4 @@ bin/
 .DS_Store
 static/build
 node_modules
+vendor
