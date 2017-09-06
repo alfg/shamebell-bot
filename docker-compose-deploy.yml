@@ -1,0 +1,18 @@
+redis:
+  image: "redis:alpine"
+  ports:
+    - "6379:6379"
+
+bot:
+  image: "alfg/shamebell-bot"
+  links:
+    - "redis"
+  entrypoint: ["bot", "-r", "redis:6379"]
+
+web:
+  image: "alfg/shamebell-bot"
+  ports:
+    - "80:4000"
+  links:
+    - "redis"
+  entrypoint: ["web", "-r", "redis:6379"]

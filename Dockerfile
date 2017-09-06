@@ -1,18 +1,21 @@
 FROM golang:alpine
 
+# Install system depenedencies.
 RUN apk update && apk add git yarn
 
+# Add project.
 ADD . /go/src/github.com/alfg/shamebell-bot
-# ADD ./assets /go/bin/assets
 
+# Get dep.
 RUN go get -u github.com/golang/dep/cmd/dep
 
+# Install project dependencies.
 RUN cd /go/src/github.com/alfg/shamebell-bot && dep ensure 
 
-RUN cd /go/src/github.com/alfg/shamebell-bot/static && yarn && yarn build
-
-RUN go install github.com/alfg/shamebell-bot/cmd/web
-RUN go install github.com/alfg/shamebell-bot/cmd/bot
+# Build and install project.
+RUN cd /go/src/github.com/alfg/shamebell-bot/static && yarn && yarn build && \
+    go install github.com/alfg/shamebell-bot/cmd/web && \
+    go install github.com/alfg/shamebell-bot/cmd/bot
 
 WORKDIR /go/src/github.com/alfg/shamebell-bot
 

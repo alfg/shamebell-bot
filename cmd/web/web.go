@@ -51,7 +51,7 @@ func NewStatsUpdate() *Stats {
 func broadcastLoop() {
 	var id int
 	for {
-		time.Sleep(time.Second * 5)
+		time.Sleep(time.Second * 1)
 		es.SendEventMessage(string(NewStatsUpdate().ToJSON()), "message", strconv.Itoa(id))
 		id++
 	}
