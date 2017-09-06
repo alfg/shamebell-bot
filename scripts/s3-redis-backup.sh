@@ -10,6 +10,7 @@ LASTDATE=$(date +%Y-%m-%d --date='1 week ago')
 SRCDIR='/tmp/s3backups'
 DESTDIR='directory-name'
 BUCKET='bucket-name'
+RDBDIR='/root/redis/dump.rdb'
 
 #### END CONFIGURATION ####
 
@@ -18,7 +19,7 @@ mkdir -p $SRCDIR
 
 # make a compressed copy of the redis dump
 
-cp /var/lib/redis/dump.rdb $SRCDIR/$NOWDATE-redis-dump.rdb
+cp $RDBDIR $SRCDIR/$NOWDATE-redis-dump.rdb
 gzip $SRCDIR/$NOWDATE-redis-dump.rdb
 
 # send the file off to s3
