@@ -70,7 +70,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-	if strings.HasPrefix(m.Content, "!shame") {
+	if strings.HasPrefix(m.Content, "!shame") || strings.HasPrefix(m.Content, "!shamebell") {
 		user := strings.TrimLeft(m.Content, "!shame ")
 		s.ChannelMessageSend(m.ChannelID, ":bell: Shame! "+user)
 

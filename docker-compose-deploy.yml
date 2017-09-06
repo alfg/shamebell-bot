@@ -7,7 +7,7 @@ bot:
   image: "alfg/shamebell-bot"
   links:
     - "redis"
-  entrypoint: ["bot", "-r", "redis:6379"]
+  entrypoint: ["bot", "-r", "redis:6379", "-t", ""]
 
 web:
   image: "alfg/shamebell-bot"
