@@ -8,14 +8,11 @@ class StatsEvents extends EventEmitter {
             let eventSource = new EventSource('/events');
             eventSource.onmessage = this.receivedMessage.bind(this);
         }
-
     }
 
     receivedMessage(event) {
       this.emit('update', event);
     }
-
 }
 
 export default StatsEvents;
-

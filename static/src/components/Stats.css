@@ -2,3 +2,8 @@
   display: block;
   margin-top: 100px;
 }
+
+.Stats-panel span {
+  width: 24px;
+  display: inline-block;
+}

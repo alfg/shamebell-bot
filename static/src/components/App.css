@@ -51,6 +51,15 @@
   font-size: large;
 }
 
+.App-intro a {
+  color: #7289da;
+  text-decoration: none;
+}
+
+.App-intro a:hover {
+  text-decoration: underline;
+}
+
 .App-button {
   background: #fff;
   border: 2px dashed #5e4634;
@@ -59,7 +68,7 @@
   height: 50px;
   text-align: center;
   font-size: 18px;
-  color: #B1B1B1;
+  color: #222;
   line-height: 50px;
   text-transform: uppercase;
   -webkit-transition: all .1s ease-in-out;
@@ -68,6 +77,11 @@
   text-decoration: none;
   display: block;
   margin-top: 20px;
+}
+
+.App-button span {
+  width: 24px;
+  display: inline-block;
 }
 
 .App-button:hover {
