@@ -5,5 +5,5 @@ export default {
     SHAMEBELL_URL,
     DISCORD_URL: 'https://discordapp.com',
     GITHUB_URL: 'https://github.com/alfg/shamebell-bot',
-    AUTH_URL: 'https://discordapp.com/oauth2/authorize?scope=bot&permissions=3072&client_id=' + CLIENT_ID,
+    AUTH_URL: 'https://discordapp.com/oauth2/authorize?scope=bot&permissions=3148800&client_id=' + CLIENT_ID,
 }
