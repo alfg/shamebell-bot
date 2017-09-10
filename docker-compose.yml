@@ -4,13 +4,13 @@ redis:
     - "6379:6379"
 
 bot:
-  image: "alfg/shamebell-bot"
+  image: "alfg/shamebell-bot:latest"
   links:
     - "redis"
   entrypoint: ["bot", "-r", "redis:6379", "-t", ""]
 
 web:
-  image: "alfg/shamebell-bot"
+  image: "alfg/shamebell-bot:latest"
   ports:
     - "80:4000"
   links:

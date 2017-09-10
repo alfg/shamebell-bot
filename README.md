@@ -3,11 +3,14 @@ Shame your friends in Discord for doing stupid things. :bell:
 
 ![](/assets/profile.png)
 
+
 ## Installation
 Simply go to https://shamebellbot.com/ to install the bot on your Discord server!
 
+
 ## Usage
 Just type `!shame` while in a voice channel!
+
 
 ## Develop
 Shamebell-bot requires the following for development:
@@ -43,11 +46,27 @@ You should now have 3 separate processes: The bot, web backend and web frontend.
 
 Load `http://localhost:3000/` in your browser.
 
-## Deployment
-TODO
 
 ## Docker
-TODO
+A `docker-compose.yml` is provided to easily setup and launch the bot, web server, and redis instance.
+
+Pre-built Docker images are available and tagged for use at https://hub.docker.com/r/alfg/shamebell-bot/tags.
+
+This makes it easy to deploy if your server has Docker installed using `docker-compose` or `docker-swarm`.
+
+* Add your bot's auth token to `docker-compose.yml`'s, bot entrypoint `-t` flag.
+* Run `docker-compose`:
+```
+docker-compose up
+```
+* Load `http://localhost:4000/` in browser to see the website.
+
+#### Updating Version
+Update `docker-compose.yml` bot and web tag to the latest version, then run:
+```
+docker-compose up -d --no-deps
+```
+
 
 ## Resources
 * https://github.com/bwmarrin/discordgo - Discord Golang Bindings
