@@ -22,7 +22,9 @@ var (
 )
 
 type Stats struct {
-	Total string `json:"total"`
+	Total    string `json:"total"`
+	Guilds   string `json:"guilds"`
+	Channels string `json:"channels"`
 }
 
 func (c *Stats) ToJSON() []byte {
@@ -31,20 +33,27 @@ func (c *Stats) ToJSON() []byte {
 }
 
 func NewStatsUpdate() *Stats {
-	var total *redis.StringCmd
+	var (
+		total    *redis.StringCmd
+		guilds   *redis.IntCmd
+		channels *redis.IntCmd
+	)
 
 	errors, err := r.Pipelined(func(pipe *redis.Pipeline) error {
 		total = pipe.Get("shamebell:total")
+		guilds = pipe.SCard("shamebell:guilds")
+		channels = pipe.SCard("shamebell:channels")
 		return nil
 	})
-	fmt.Println(total.Val())
 
 	if err != nil {
 		fmt.Println("Failed to get update from redis", errors, err)
 	}
 
 	return &Stats{
-		Total: total.Val(),
+		Total:    total.Val(),
+		Guilds:   strconv.FormatInt(guilds.Val(), 10),
+		Channels: strconv.FormatInt(channels.Val(), 10),
 	}
 }
 

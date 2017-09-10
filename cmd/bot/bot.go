@@ -16,8 +16,15 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-var buffer = make([][]byte, 0)
-var r *redis.Client
+var (
+	buffer = make([][]byte, 0)
+	r      *redis.Client
+)
+
+type Play struct {
+	GuildID   string
+	ChannelID string
+}
 
 func main() {
 	var (
@@ -71,8 +78,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	if strings.HasPrefix(m.Content, "!shame") || strings.HasPrefix(m.Content, "!shamebell") {
-		user := strings.TrimLeft(m.Content, "!shame ")
-		s.ChannelMessageSend(m.ChannelID, ":bell: Shame! "+user)
+		s.ChannelMessageSend(m.ChannelID, ":bell: Shame!")
 
 		// Find channel
 		c, err := s.State.Channel(m.ChannelID)
@@ -156,7 +162,11 @@ func playSound(s *discordgo.Session, guildID, channelID string) error {
 	}
 
 	// Track stats in redis.
-	go trackStats()
+	play := &Play{
+		GuildID:   guildID,
+		ChannelID: channelID,
+	}
+	go trackStats(play)
 
 	// Sleep for specified amount of time before playing sound.
 	time.Sleep(250 * time.Millisecond)
@@ -181,13 +191,15 @@ func playSound(s *discordgo.Session, guildID, channelID string) error {
 	return nil
 }
 
-func trackStats() {
+func trackStats(play *Play) {
 	if r == nil {
 		return
 	}
 
 	_, err := r.Pipelined(func(pipe *redis.Pipeline) error {
 		pipe.Incr("shamebell:total")
+		pipe.SAdd("shamebell:guilds", play.GuildID)
+		pipe.SAdd("shamebell:channels", play.ChannelID)
 		return nil
 	})
 
