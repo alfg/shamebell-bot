@@ -23,7 +23,9 @@ class Stats extends Component {
 
   render() {
     return(
-      <div className="Stats-panel"><span role="img" aria-label="bell">🔔</span>{this.state.total} people shamed!</div>
+      <div className="Stats-panel">
+        <span role="img" aria-label="bell">🔔</span>{this.state.total} people shamed!
+      </div>
     )
   }
 }
