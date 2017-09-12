@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import profile from '../img/profile.png';
 import './App.css';
 import Constants from '../Constants';
-import Stats from './Stats';
+import Footer from './Footer';
 
 class App extends Component {
 
@@ -21,12 +21,11 @@ class App extends Component {
           </div>
 
           <a className="App-button" onClick={this.addToDiscordHandler}>
-            <span role="img" aria-label="bell">🔔</span>
             Add to Discord
           </a>
         </div>
 
-        <Stats />
+        <Footer />
       </div>
     );
   }

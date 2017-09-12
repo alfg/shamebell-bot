@@ -1,0 +1,18 @@
+.Footer {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.Footer-links {
+  position: absolute;
+  bottom: 40px;
+}
+
+.Footer-links a {
+  color: #7289da;
+  text-decoration: none;
+}
+
+.Footer-links a:hover {
+  text-decoration: underline;
+}

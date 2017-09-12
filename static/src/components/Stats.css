@@ -1,6 +1,7 @@
 .Stats-panel {
   display: block;
   margin-top: 100px;
+  margin-bottom: 20px;
 }
 
 .Stats-panel span {

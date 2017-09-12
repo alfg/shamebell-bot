@@ -1,6 +1,6 @@
 {
   "name": "shamebell-web",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "dependencies": {
     "react": "^15.6.1",
