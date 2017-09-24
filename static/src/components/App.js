@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import profile from '../img/profile.png';
 import './App.css';
 import Constants from '../Constants';
+import Stats from './Stats';
 import Footer from './Footer';
 
 class App extends Component {
@@ -23,6 +24,8 @@ class App extends Component {
           <a className="App-button" onClick={this.addToDiscordHandler}>
             Add to Discord
           </a>
+
+          <Stats />
         </div>
 
         <Footer />

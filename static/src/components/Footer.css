@@ -1,11 +1,8 @@
 .Footer {
+  bottom: 5%;
+  position: fixed;
   margin-top: 10px;
   text-align: center;
-}
-
-.Footer-links {
-  position: absolute;
-  bottom: 40px;
 }
 
 .Footer-links a {
