@@ -3,6 +3,7 @@ Shame your friends in Discord for doing stupid things. :bell:
 
 ![](/assets/profile.png)
 
+[![Discord Bots](https://discordbots.org/api/widget/servers/350849408075825152.svg)](https://discordbots.org/bot/350849408075825152)
 
 ## Installation
 Simply go to https://shamebellbot.com/ to install the bot on your Discord server!
