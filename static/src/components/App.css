@@ -25,6 +25,7 @@
   height: 120px;
   border: 5px solid #ebebeb;
   border-radius: 138px;
+  cursor: pointer;
 }
 
 .App-logo:hover {
@@ -88,6 +89,16 @@
   color: #fff;
   background-color: #B1B1B1;
   border: 2px solid #B1B1B1;
+}
+
+.App-instruction {
+  color: #444;
+}
+
+.App-instruction .command {
+  font-family: monospace;
+  background: #eaeaea;
+  padding: 3px;
 }
 
 @keyframes App-logo-spin {

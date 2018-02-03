@@ -8,7 +8,8 @@ class Stats extends Component {
     super();
 
     this.state = {
-      total: 0
+      total: 0,
+      servers: 0,
     }
 
     this.stats = new StatsEvents();
@@ -17,14 +18,14 @@ class Stats extends Component {
 
   onMessage(event) {
     const data = JSON.parse(event.data);
-    this.setState({ total: data.total || 0 });
+    this.setState({ total: data.total || 0, servers: data.guilds || 0 });
   }
 
 
   render() {
     return(
       <div className="Stats-panel">
-        <span role="img" aria-label="bell">🔔</span>{this.state.total} people shamed!
+        <span role="img" aria-label="bell">🔔</span>{this.state.total} people shamed on {this.state.servers} servers!
       </div>
     )
   }
