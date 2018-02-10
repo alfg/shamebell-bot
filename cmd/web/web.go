@@ -14,10 +14,7 @@ import (
 )
 
 var (
-	apiBaseURL = "https://discordapp.com/api"
-
 	r *redis.Client
-
 	es eventsource.EventSource
 )
 
